@@ -18,7 +18,7 @@ cur = conn.cursor()
 if len(sys.argv)>0:
     word=str(sys.argv[1])
     #Select the argument work
-    cur.execute("SELECT word, count from tweetwordcount WHERE word=%s", word)
+    cur.execute("SELECT word, count from tweetwordcount WHERE word=%s", [word])
     records = cur.fetchall()
     for rec in records:
         print "Total number of occurrences of ", rec[0], ":", rec[1]

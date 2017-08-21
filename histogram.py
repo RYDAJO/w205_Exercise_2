@@ -21,7 +21,7 @@ upperbound=str(sys.argv[2])
 cur.execute("SELECT word, count from tweetwordcount WHERE count BETWEEN %s AND %s", (lowerbound,upperbound))
 records = cur.fetchall()
 for rec in records:
-    print rec[0], ": ", rerec[1], "\n"
+    print rec[0], ": ", rec[1], "\n"
     conn.commit()
 
 conn.close()

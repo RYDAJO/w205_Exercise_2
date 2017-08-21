@@ -33,13 +33,13 @@ class WordCounter(Bolt):
         cur = conn.cursor()
 
         #Select the word from BOLT, determine if it's in the table, and adjust count accordingly
-        cur.execute("SELECT word, count from tweetwordcount WHERE word=%s", word)
+        cur.execute("SELECT word, count from tweetwordcount WHERE word=%s", [word])
         records = cur.fetchall()
         if len(records)>0:
-            cur.execute("UPDATE tweetwordcount SET count=count+1 WHERE word=%s", word)
+            cur.execute("UPDATE tweetwordcount SET count=count+1 WHERE word=%s", [word])
             conn.commit()
         else:
-            cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, 1)", word)
+            cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, 1)", [word])
             conn.commit()
         conn.close()        
 
